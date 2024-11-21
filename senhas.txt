@@ -1,0 +1,1 @@
+mongodb+srv://vitorgabriel:VitorGabriel12@@cluster0.o7kzi.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
