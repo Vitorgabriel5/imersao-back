@@ -1,3 +1,5 @@
+import'dotenv/config';
+import { ObjectId } from "mongodb";
 import conectarAoBanco from "../config/dbconfig.js";
 const conexao = await conectarAoBanco(process.env.STRING_CONEXAO);
 // Cria uma conexão com o banco de dados, utilizando a string de conexão obtida da variável de ambiente `STRING_CONEXAO`. O resultado da conexão é armazenado na variável `conexao`.
@@ -12,10 +14,15 @@ export async function getTodosPosts(){
     return colecao.find().toArray();
     // Executa uma consulta para encontrar todos os documentos (posts) na coleção e retorna um array com os resultados.
 }
-
 export async function criarPost(novoPost) {
     const db = conexao.db("imersao-back-end");
     const colecao = db.collection("posts");
     return colecao.insertOne(novoPost)
-    
+}
+
+export async function atualizarPost(id,novoPost) {
+    const db = conexao.db("imersao-back-end");
+    const colecao = db.collection("posts");
+    const objID = ObjectId.createFromHexString(id)
+    return colecao.updateOne({_id: new ObjectId(objID)},{$set:novoPost})
 }
