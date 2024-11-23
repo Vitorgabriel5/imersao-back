@@ -4,7 +4,9 @@
 
     const app = express();
     // Cria uma instância do Express, que será o nosso servidor web.
+    app.use(express.static("uploads"));
     routes(app);
+
 
     app.listen(3000, () => {
     console.log("Servidor escutando...");
